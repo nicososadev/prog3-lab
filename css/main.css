@@ -10,6 +10,17 @@
     max-height: 500px;
 }
 
+/* ---------- Carousel-Propiedad ---------- */
+
+.carousel-propiedad {
+    margin: auto;
+    max-width: 1600px;
+    max-height: 500px;
+}
+
+.carousel-item-propiedad>img {
+    max-height: 500px;
+}
 
 /* ---------- Footer ---------- */
 
