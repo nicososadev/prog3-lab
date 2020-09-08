@@ -156,7 +156,12 @@ margin-bottom: 10px;
 border-top-left-radius: 0;
 border-top-right-radius: 0;
 }
-  
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+    padding: 100px;
+    margin: auto;
+}
 
 /* ---------- Agentes ---------- */
 

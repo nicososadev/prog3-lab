@@ -1,12 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Ingresar</title>
+    <title>Contactanos</title>
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
@@ -14,7 +13,6 @@
 
     <!-- CSS -->
     <link rel="stylesheet" href="css/main.css">
-    
 </head>
 
 <body>
@@ -56,23 +54,31 @@
         </div>
     </nav>
 
-    <!-- Login Form -->
-    <form class="form-signin text-center">
-        <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
-            height="72">
-        <h1 class="h3 mb-3 font-weight-normal">Ingresar</h1>
-        <label for="inputEmail" class="sr-only">Correo</label>
-        <input type="email" id="inputEmail" class="form-control" placeholder="Correo" required autofocus>
-        <label for="inputPassword" class="sr-only">Contraseña</label>
-        <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required>
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Recordarme
-            </label>
+    <div class="container">
+        <div class="col">
+            <h2 class="text-center">Contactanos</h2>
+            <hr />
+            <div class="row">
+                <div class="col-10 mx-auto">
+                    <form>
+                        <div class="form-group col-6">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre">
+                        </div>
+                        <div class="form-group col-6">
+                            <label for="email">Correo</label>
+                            <input type="email" class="form-control" id="email" placeholder="email@ejemplo.com">
+                        </div>
+                        <div class="form-group col-10">
+                            <label for="mensaje">Example textarea</label>
+                            <textarea class="form-control" id="mensaje" rows="8"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary ml-3 mt-3 mb-5">Enviar</button>
+                    </form>
+                </div>
+            </div>
         </div>
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Ingresar</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
-    </form>
+    </div>
 
     <!-- Footer -->
     <div class="footer-dark">
@@ -82,9 +88,9 @@
                     <div class="col-sm-6 col-md-3 item">
                         <h3>Contacto</h3>
                         <ul>
-                            <li><a href="#">Correo: inmobiliaria@gmail.com</a></li>
-                            <li><a href="#">Teléfono: 3834 555555</a></li>
-                            <li><a href="#">Dirección: República 555</a></li>
+                            <li>Correo: inmobiliaria@gmail.com</li>
+                            <li>Teléfono: 3834 555555</li>
+                            <li>Dirección: República 555</li>
                         </ul>
                     </div>
                     <div class="col-sm-6 col-md-3 item">
@@ -97,8 +103,10 @@
                     </div>
                     <div class="col-md-6 item text">
                         <h3>Inmobiliaria</h3>
-                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut vehicula
-                            rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar dictum
+                        <p>Praesent sed lobortis mi. Suspendisse vel placerat ligula. Vivamus ac sem lacus. Ut
+                            vehicula
+                            rhoncus elementum. Etiam quis tristique lectus. Aliquam in arcu eget velit pulvinar
+                            dictum
                             vel in justo.</p>
                     </div>
                     <div class="col item social"><a href="#"><i class="icon ion-social-facebook"></i></a><a href="#"><i
@@ -110,6 +118,17 @@
             </div>
         </footer>
     </div>
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
