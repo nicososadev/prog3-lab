@@ -1,15 +1,36 @@
 from django.db import models
+from django.urls import reverse
 
-COLORS = [
-    ('WH', 'Blanco'),
-    ('GR', 'Verde'),
-    ('YE', 'Amarillo'),
+OPERATION = [
+    ('AL', 'Alquiler'),
+    ('VE', 'Venta'),
+]
+
+PROPERTY_TYPE = [
+    ('CA', 'Casa'),
+    ('DP', 'Departamento'),
 ]
 
 class Propiedad(models.Model):
 
-    description = models.TextField()
-    colors = models.CharField(max_length=2, choices=COLORS)
-    rooms = models.IntegerField()
-    bathrooms = models.IntegerField()
-    
+    propType = models.CharField(max_length=2, choices=PROPERTY_TYPE, verbose_name = 'Tipo Propiedad')
+    operation = models.CharField(max_length=2, choices=OPERATION, verbose_name = 'Tipo Operacion')
+    description = models.TextField(max_length=200, verbose_name = 'Descripcion')
+    image = models.ImageField(verbose_name = 'Imagen', upload_to='propiedad', null=True, blank=True)
+    rooms = models.IntegerField(verbose_name = 'Habitaciones')
+    bathrooms = models.IntegerField(verbose_name = 'Baños')
+    surfice = models.IntegerField(verbose_name = 'Superficie')
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name = 'Precio')
+    created = models.DateTimeField(auto_now_add=True, verbose_name = 'Creado')
+    updated = models.DateTimeField(auto_now=True, verbose_name = 'Actualizado')
+
+    class Meta:
+        verbose_name = 'propiedad'
+        verbose_name_plural = 'propiedades'
+        ordering = ['-created']
+
+    def precio(self):
+        return '$ %.2f' % self.price
+
+    def get_absolute_url(self):
+        return reverse('propiedad:detail', kwargs={'pk': self.pk})

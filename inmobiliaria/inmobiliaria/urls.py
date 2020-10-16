@@ -1,4 +1,4 @@
-"""inmobiliaria URL Configuration
+"""Inmobiliaria URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/3.1/topics/http/urls/
@@ -22,6 +22,8 @@ from django.conf.urls.static import static
 from . import views
 
 urlpatterns = [
+    # Jet
+    path('jet/', include('jet.urls', 'jet')),
 
     # Admin
     path('admin/', admin.site.urls),
@@ -39,3 +41,4 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns = urlpatterns + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    urlpatterns = urlpatterns + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
