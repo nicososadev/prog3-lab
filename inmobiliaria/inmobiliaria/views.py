@@ -1,8 +1,14 @@
 from django.shortcuts import render
 
+from apps.propiedad.models import Propiedad
+
 def HomePage(request):
 
-    return render(request, 'homepage.html', {})
+    propiedades = Propiedad.objects.all()
+    context = {
+        'propiedades': propiedades
+    }
+    return render(request, 'homepage.html', context)
 
 def ContactView(request):
         

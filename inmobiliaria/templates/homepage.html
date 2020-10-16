@@ -35,114 +35,30 @@
 <div class="container mt-3">
     <h2 class="text-center mb-3">Algunas de nuestras propiedades</h2>
     <div class="row">
+        {% for propiedad in propiedades %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <img class="card-img-top"
                     data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
                     alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
+                    src="{{ propiedad.image.url }}" data-holder-rendered="true">
                 <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
+                    <p class="card-text">{{ propiedad.description }}</p>
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
-                            <a href="{% url 'propiedad:detail' %}" type="button" class="btn btn-sm btn-success">Ver mas</a>
+                            <a href="{{ propiedad.get_absolute_url }}" type="button" class="btn btn-sm btn-success">Ver mas</a>
                             <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         </div>
-                        <small class="text-muted">Detalles...</small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3">
+                        <small class="text-muted">Habitaciones: {{ propiedad.rooms }}</small>
+                        <small class="text-muted">Baños: {{ propiedad.bathrooms }}</small>
+                        <small class="text-muted">Superficie: {{ propiedad.surfice }}mts2</small>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                    alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
-                <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">Detalles...</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                    alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
-                <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">Detalles...</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                    alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
-                <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">Detalles...</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                    alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
-                <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">Detalles...</small>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card mb-4 shadow-sm">
-                <img class="card-img-top"
-                    data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail"
-                    alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;"
-                    src="{% static 'images/casa4.jpg' %}" data-holder-rendered="true">
-                <div class="card-body">
-                    <p class="card-text">Descripcion de la propiedad.</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Ver mas</button>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                        </div>
-                        <small class="text-muted">Detalles...</small>
-                    </div>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
     <div class="text-center mb-3">
         <a class="btn btn-primary" href="propiedades-list.html">Ver todas las propiedades</a>

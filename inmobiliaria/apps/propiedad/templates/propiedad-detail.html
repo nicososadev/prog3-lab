@@ -11,14 +11,14 @@
                 <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         <div class="carousel-item active">
+                            <img src="{{ propiedad.image.url }}" class="d-block w-100" alt="...">
+                        </div>
+                        <!-- <div class="carousel-item">
                             <img src="{% static 'images/casa2.jpeg' %}" class="d-block w-100" alt="...">
                         </div>
                         <div class="carousel-item">
                             <img src="{% static 'images/casa2.jpeg' %}" class="d-block w-100" alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="{% static 'images/casa2.jpeg' %}" class="d-block w-100" alt="...">
-                        </div>
+                        </div> -->
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -36,14 +36,20 @@
                     <h4>Detalles</h4>
                     <tbody>
                         <tr>
-                            <td colspan="1">5 de septiempre del 2020</td>
+                            <td colspan="1">{{ propiedad.created }}</td>
                         </tr>
                         <tr>
-                            <td colspan="1">$15.000/mes</td>
+                            <td colspan="1">{{ propiedad.precio }}</td>
                         </tr>
                         <tr>
                             <td colspan="1">
-                                <button class="btn btn-success">Comprar/Alquilar</button>
+                                <button class="btn btn-success">
+                                    {% if propiedad.operation == 'AL' %}
+                                        Alquilar
+                                    {% else %}
+                                        Comprar
+                                    {% endif %}
+                                </button>
                             </td>
                         </tr>
                     </tbody>
@@ -54,15 +60,7 @@
         <div class="row mt-3">
             <div class="col-8">
                 <h3>Descripción</h3>
-                <p>
-                    This property includes a wide variety of facilities that can make your dwelling in the
-                    picturesque area of Southern Los Angeles very comfortable. There is everything modern citizen
-                    may need, even the most up-to-date technologies that are organically integrated with all the
-                    communications of the house. If you are looking for a calm place to live, the Presidential
-                    Residences have something to offer you. With effective planning and additional amenities
-                    available as a part of the property, these apartments can give you an unprecedented level of
-                    comfort with a quick access to the airport, train station, and the city center.
-                </p>
+                <p>{{ propiedad.description }}</p>
             </div>
         </div>
 
@@ -78,16 +76,16 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td colspan="1">Año de construcción</td>
-                            <td colspan="2">1995</td>
-                        </tr>
-                        <tr>
-                            <td colspan="1">Tamaño del Terreno</td>
-                            <td colspan="2">400m2</td>
-                        </tr>
-                        <tr>
                             <td colspan="1">Habitaciones</td>
-                            <td colspan="2">4</td>
+                            <td colspan="2">{{ propiedad.rooms }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Baños</td>
+                            <td colspan="2">{{ propiedad.bathrooms }}</td>
+                        </tr>
+                        <tr>
+                            <td colspan="1">Tamaño de propiedad</td>
+                            <td colspan="2">{{ propiedad.surfice }} mts2</td>
                         </tr>
                     </tbody>
                 </table>

@@ -8,6 +8,6 @@ app_name = 'propiedad'
 urlpatterns = [
 
     path('', views.propiedadList, name='list'),
-    path('detail/', views.propiedadDetail, name='detail'),
+    path('detail/<int:propiedad_id>/', views.propiedadDetail, name='detail'),
     path('registar-propiedad/', views.propiedadCreate, name='registrar'),
 ]

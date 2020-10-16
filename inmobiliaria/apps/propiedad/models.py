@@ -33,4 +33,4 @@ class Propiedad(models.Model):
         return '$ %.2f' % self.price
 
     def get_absolute_url(self):
-        return reverse('propiedad:detail', kwargs={'pk': self.pk})
+        return reverse('propiedad:detail', kwargs={'propiedad_id': self.id})
