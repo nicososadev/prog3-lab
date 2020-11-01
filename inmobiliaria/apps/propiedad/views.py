@@ -1,14 +1,20 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.http import HttpResponseRedirect
 
 from apps.propiedad.models import Propiedad
+from apps.agente.models import Agente
+
+from .forms import PropiedadForm
 
 def propiedadDetail(request, propiedad_id):
 
     propiedad = Propiedad.objects.get(id=propiedad_id)
+    agente = Agente.objects.get(user=propiedad.agente)
     context = {
-        'propiedad': propiedad
+        'propiedad': propiedad,
+        'agente': agente
     }
-    return render(request, 'propiedad-detail.html', context)
+    return render(request, 'propiedad/propiedad-detail.html', context)
 
 def propiedadList(request):
 
@@ -17,8 +23,20 @@ def propiedadList(request):
         'propiedades': propiedades
     }
 
-    return render(request, 'propiedad-list.html', context)
+    return render(request, 'propiedad/propiedad-list.html', context)
 
 def propiedadCreate(request):
+    form = PropiedadForm(request.POST or None, request.FILES)
 
-    return render(request, 'propiedad-form.html', {})  
+    context = {
+        'form': form
+    }
+    if form.is_valid():
+        propiedad = form.save(commit=False)
+
+        propiedad.agente = request.user 
+        propiedad.save()
+
+        return HttpResponseRedirect("/")
+
+    return render(request, 'propiedad/propiedad-form.html', context)  

@@ -1,4 +1,3 @@
-from django.contrib import admin
 from django.urls import path
 
 from . import views
@@ -6,7 +5,6 @@ from . import views
 app_name = 'propiedad'
 
 urlpatterns = [
-
     path('', views.propiedadList, name='list'),
     path('detail/<int:propiedad_id>/', views.propiedadDetail, name='detail'),
     path('registar-propiedad/', views.propiedadCreate, name='registrar'),

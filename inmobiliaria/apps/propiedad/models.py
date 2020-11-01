@@ -1,5 +1,8 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 OPERATION = [
     ('AL', 'Alquiler'),
@@ -13,10 +16,11 @@ PROPERTY_TYPE = [
 
 class Propiedad(models.Model):
 
+    agente = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
     propType = models.CharField(max_length=2, choices=PROPERTY_TYPE, verbose_name = 'Tipo Propiedad')
     operation = models.CharField(max_length=2, choices=OPERATION, verbose_name = 'Tipo Operacion')
     description = models.TextField(max_length=200, verbose_name = 'Descripcion')
-    image = models.ImageField(verbose_name = 'Imagen', upload_to='propiedad', null=True, blank=True)
+    image = models.ImageField(verbose_name = 'Imagen', upload_to='propiedad/', null=True, blank=True)
     rooms = models.IntegerField(verbose_name = 'Habitaciones')
     bathrooms = models.IntegerField(verbose_name = 'Baños')
     surfice = models.IntegerField(verbose_name = 'Superficie')
@@ -34,3 +38,6 @@ class Propiedad(models.Model):
 
     def get_absolute_url(self):
         return reverse('propiedad:detail', kwargs={'propiedad_id': self.id})
+
+    def __str__(self):
+        return  '%s' % self.id

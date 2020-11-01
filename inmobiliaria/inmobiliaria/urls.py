@@ -19,8 +19,6 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-from . import views
-
 urlpatterns = [
     # Jet
     path('jet/', include('jet.urls', 'jet')),
@@ -28,15 +26,20 @@ urlpatterns = [
     # Admin
     path('admin/', admin.site.urls),
 
-    # App
-    path('', views.HomePage, name='home'),
-    path('contact/', views.ContactView, name='contact'),
-    path('login/', views.LoginView, name='login'),
-    path('register/', views.RegisterView, name='register'),
+    # Core
+    path('', include('apps.core.urls', namespace='core')),
+
+    # Users
+    path('users/', include('apps.user.urls', namespace='user')),
 
     # Propiedad
     path('propiedad/', include('apps.propiedad.urls', namespace='propiedad')),
 
+    # Contact
+    path('contact/', include('apps.contact.urls', namespace='contact')),
+
+    # Venta
+    path('venta/', include('apps.venta.urls', namespace='venta')),
 ]
 
 if settings.DEBUG:

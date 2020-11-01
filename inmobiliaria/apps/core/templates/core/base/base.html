@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {% include 'core/base/css.html' %}
+  </head>
+  <body>
+    {% include 'core/base/navbar.html' %}
+
+    {% block content %}
+
+    {% endblock %}
+    
+    {% include 'core/base/footer.html' %}
+
+    {% include 'core/base/js.html' %}
+    </body>
+</html>
