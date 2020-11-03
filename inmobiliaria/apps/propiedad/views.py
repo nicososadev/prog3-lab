@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
+from django.contrib import messages
 
 from apps.propiedad.models import Propiedad
 from apps.agente.models import Agente
@@ -36,6 +37,8 @@ def propiedadCreate(request):
 
         propiedad.agente = request.user 
         propiedad.save()
+
+        messages.success(request, 'Propiedad registrada con exito.')
 
         return HttpResponseRedirect("/")
 

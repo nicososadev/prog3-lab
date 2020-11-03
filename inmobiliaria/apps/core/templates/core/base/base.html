@@ -6,10 +6,13 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>{% block title %}{% endblock %}</title>
     {% include 'core/base/css.html' %}
   </head>
   <body>
     {% include 'core/base/navbar.html' %}
+
+    {% include 'core/base/messages.html' %}
 
     {% block content %}
 

@@ -1,6 +1,8 @@
 {% extends 'core/base/base.html' %}
 {% load static %}
 
+{% block title %}Propiedades{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <h2 class="text-center">Listado de propiedads</h2>
@@ -63,6 +65,7 @@
 
             <!-- Listado de propiedades -->
             <div class="col-7 ml-4">
+                {% if propiedades %}
                 <div class="row">
                     {% for propiedad in propiedades %}
                     <div class="col-md-4">
@@ -75,9 +78,7 @@
                                 <p class="card-text">{{ propiedad.description }}</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
-                                        <a href="{{ propiedad.get_absolute_url }}" type="button"
-                                            class="btn btn-sm btn-success">Ver mas</a>
-                                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                        <a href="{{ propiedad.get_absolute_url }}" type="button" class="btn btn-sm btn-success">Ver mas</a>
                                     </div>
                                 </div>
                                 <div class="d-flex justify-content-between align-items-center mt-3">
@@ -90,6 +91,11 @@
                     </div>
                     {% endfor %}
                 </div>
+                {% else %}
+                <div class="alert alert-info text-center">
+                    <strong>No hay propiedades registradas en este momento.</strong>
+                </div> 
+                {% endif %}
             </div>
         </div>
     </div>

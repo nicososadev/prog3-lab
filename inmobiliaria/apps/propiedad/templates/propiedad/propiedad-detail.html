@@ -1,6 +1,8 @@
 {% extends 'core/base/base.html' %}
 {% load static %}
 
+{% block title %}Propiedad{% endblock %}
+
 {% block content %}
 <div class="container">
     <h2 class="text-center">Detalle de la propiedad</h2>
@@ -43,6 +45,7 @@
                         </tr>
                         <tr>
                             <td colspan="1">
+                                {% if not user.is_staff %}
                                 <form class="form" method="POST" action="{% url 'venta:confirmar-venta' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="agente" value="{{ agente.id }}" />
@@ -56,6 +59,7 @@
                                         {% endif %}
                                     </button>
                                 </form>
+                                {% endif %}
                             </td>
                         </tr>
                     </tbody>

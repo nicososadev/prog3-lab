@@ -1,6 +1,8 @@
 {% extends 'core/base/base.html' %}
 {% load static %}
 
+{% block title %}Inmobiliaria{% endblock %}
+
 {% block content %}
 
 <!-- Carousel -->
@@ -34,6 +36,7 @@
 
 <div class="container mt-3">
     <h2 class="text-center mb-3">Algunas de nuestras propiedades</h2>
+    {% if propiedades %}
     <div class="row">
         {% for propiedad in propiedades %}
         <div class="col-md-4">
@@ -47,7 +50,6 @@
                     <div class="d-flex justify-content-between align-items-center">
                         <div class="btn-group">
                             <a href="{{ propiedad.get_absolute_url }}" type="button" class="btn btn-sm btn-success">Ver mas</a>
-                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-center mt-3">
@@ -63,6 +65,11 @@
     <div class="text-center mb-3">
         <a class="btn btn-primary" href="{% url 'propiedad:list' %}">Ver todas las propiedades</a>
     </div>
+    {% else %}
+        <div class="alert alert-info text-center">
+            <strong>No hay propiedades registradas en este momento.</strong>
+        </div> 
+    {% endif %}
 </div>
 
 <!-- Agentes -->
