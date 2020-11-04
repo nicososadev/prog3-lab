@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container" style="min-height: 627px">
-    <h2 class="text-center">Mis compras</h2>
+    <h2 class="text-center">Mis Ventas</h2>
     <hr class="col-7">
     <div class="container-fluid">
         {% if ventas %}
@@ -13,10 +13,8 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">ID Venta</th>
+                    <th scope="col">ID Compra</th>
                     <th scope="col">ID Propiedad</th>
-                    <th scope="col">Usuario</th>
-                    <th scope="col">Email</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -27,10 +25,8 @@
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{ venta.id }}</td>
                     <td><a href="{{ venta.propiedad.get_absolute_url }}">{{ venta.propiedad.id }}</a></td>
-                    <td>{{ venta.usuario }}</td>
-                    <td>{{ venta.usuario.email }}</td>
                     <td>{{ venta.created }}</td>
-                    <td><a href="{% url 'venta:cancel' venta.id %}"><button class="btn btn-danger">Cancelar</button></a></td>
+                    <td><a href="{% url 'venta:cancel' compra.id %}"><button class="btn btn-danger">Cancelar</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

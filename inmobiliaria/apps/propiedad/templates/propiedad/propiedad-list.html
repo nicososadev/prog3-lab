@@ -14,52 +14,92 @@
             <div class="col-2 ml-4 mr-4">
                 <h5 class="text-center">Filtrar Propiedades</h5>
                 <hr>
-                <form>
+                <form method="GET" action="{% url 'propiedad:filter' %}">
+                    <label class="mt-3" for="habitaciones">Tipo de Propiedad</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="casa" value="CA">
+                        <label class="form-check-label" for="casa">
+                            Casa
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="tipo" id="departamento" value="DP">
+                        <label class="form-check-label" for="departamento">
+                            Departamento
+                        </label>
+                    </div>
+
+                    <label class="mt-3" for="habitaciones">Tipo de Operación</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="operacion" id="casa" value="AL">
+                        <label class="form-check-label" for="alquiler">
+                            Alquiler
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="operacion" id="departamento" value="VE">
+                        <label class="form-check-label" for="venta">
+                            Venta
+                        </label>
+                    </div>
+
                     <label class="mt-3" for="habitaciones">Habitaciones</label>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="1"
-                            checked>
-                        <label class="form-check-label" for="exampleRadios1">
+                        <input class="form-check-input" type="radio" name="rooms" id="exampleRadios1" value="1">
+                        <label class="form-check-label" for="rooms">
                             1
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="2">
-                        <label class="form-check-label" for="exampleRadios2">
+                        <input class="form-check-input" type="radio" name="rooms" id="exampleRadios2" value="2">
+                        <label class="form-check-label" for="rooms">
                             2
                         </label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="3">
-                        <label class="form-check-label" for="exampleRadios3">
+                        <input class="form-check-input" type="radio" name="rooms" id="exampleRadios3" value="3">
+                        <label class="form-check-label" for="rooms">
+                            3
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rooms" id="exampleRadios3" value="4">
+                        <label class="form-check-label" for="rooms">
+                            4
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="rooms" id="exampleRadios3" value="5">
+                        <label class="form-check-label" for="rooms">
+                            5
+                        </label>
+                    </div>
+
+                    <label class="mt-3" for="habitaciones">Baños</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bathrooms" id="exampleRadios1" value="1">
+                        <label class="form-check-label" for="bathrooms">
+                            1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bathrooms" id="exampleRadios2" value="2">
+                        <label class="form-check-label" for="bathrooms">
+                            2
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="bathrooms" id="exampleRadios3" value="3">
+                        <label class="form-check-label" for="bathrooms">
                             3
                         </label>
                     </div>
 
-                    <label class="mt-3" for="habitaciones">Colores</label>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                        <label class="form-check-label" for="defaultCheck1">
-                            Blanco
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck2">
-                        <label class="form-check-label" for="defaultCheck2">
-                            Verde
-                        </label>
-                    </div>
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck3">
-                        <label class="form-check-label" for="defaultCheck3">
-                            Ladrillo
-                        </label>
-                    </div>
                     <label class="mt-3" for="precio">Precio</label>
                     <div class="form-group">
                         <input type="range" class="form-control-range" id="precio">
                     </div>
-                    <button type="submit" class="btn btn-primary class=" mt-3"">Filtrar</button>
+                    <button type="submit" class="btn btn-primary mt-3 mb-3">Filtrar</button>
                 </form>
             </div>
 

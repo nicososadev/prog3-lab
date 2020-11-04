@@ -11,6 +11,8 @@ def LoginView(request):
         'form': form
     }
 
+    next_ = request.GET.get('next') or None
+    
     if request.method == 'POST':
         if form.is_valid():
             email = form.cleaned_data.get('email')
@@ -20,6 +22,8 @@ def LoginView(request):
             if user is not None:
                 login(request, user)
                 messages.success(request,'Te has logeado con éxito')
+                if next_ is not None:
+                    return redirect(next_)
                 return redirect('/')
             else:
                 messages.error(request,'Email o contraseña incorrectos')

@@ -6,7 +6,7 @@
 
 <!-- Login Form -->
 <div class="container" style="min-height: 627px">
-    <form method="POST" action="." class="form-signin text-center">
+    <form method="POST" class="form-signin text-center">
         {% csrf_token %}
         <img class="mb-4" src="https://getbootstrap.com/docs/4.0/assets/brand/bootstrap-solid.svg" alt="" width="72"
             height="72">
@@ -17,11 +17,6 @@
         <label for="inputPassword" class="sr-only">Contraseña</label>
         <!-- <input type="password" id="inputPassword" class="form-control" placeholder="Contraseña" required> -->
         {{ form.password }}
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" value="remember-me"> Recordarme
-            </label>
-        </div>
         <button class="btn btn-lg btn-primary btn-block mb-4" type="submit">Ingresar</button>
         <a href="{% url 'user:register' %}">Registrarse</a>
         <p class="mt-5 mb-3 text-muted">&copy; 2020</p>
