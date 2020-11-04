@@ -46,6 +46,7 @@
                         <tr>
                             <td colspan="1">
                                 {% if not user.is_staff %}
+                                {% if not propiedad.sold_out %}
                                 <form class="form" method="POST" action="{% url 'venta:confirmar-venta' %}">
                                     {% csrf_token %}
                                     <input type="hidden" name="agente" value="{{ agente.id }}" />
@@ -59,6 +60,11 @@
                                         {% endif %}
                                     </button>
                                 </form>
+                                {% else %}
+                                <div class="alert alert-danger">
+                                    <strong>Propiedad Vendida</strong>
+                                </div> 
+                                {% endif %}
                                 {% endif %}
                             </td>
                         </tr>
