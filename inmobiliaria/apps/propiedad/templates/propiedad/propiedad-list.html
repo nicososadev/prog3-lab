@@ -4,7 +4,7 @@
 {% block title %}Propiedades{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-fluid" style="min-height: 627px">
     <h2 class="text-center">Listado de propiedads</h2>
     <hr class="col-7">
     <div class="col">
@@ -68,6 +68,7 @@
                 {% if propiedades %}
                 <div class="row">
                     {% for propiedad in propiedades %}
+                    {% if not propiedad.sold_out %}
                     <div class="col-md-4">
                         <div class="card mb-4 shadow-sm">
                             <img class="card-img-top"
@@ -89,6 +90,7 @@
                             </div>
                         </div>
                     </div>
+                    {% endif %}
                     {% endfor %}
                 </div>
                 {% else %}

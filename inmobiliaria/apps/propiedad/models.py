@@ -24,6 +24,7 @@ class Propiedad(models.Model):
     rooms = models.IntegerField(verbose_name = 'Habitaciones')
     bathrooms = models.IntegerField(verbose_name = 'Baños')
     surfice = models.IntegerField(verbose_name = 'Superficie')
+    sold_out = models.BooleanField(verbose_name='Vendida', default=False)
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name = 'Precio')
     created = models.DateTimeField(auto_now_add=True, verbose_name = 'Creado')
     updated = models.DateTimeField(auto_now=True, verbose_name = 'Actualizado')

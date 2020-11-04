@@ -39,6 +39,7 @@
     {% if propiedades %}
     <div class="row">
         {% for propiedad in propiedades %}
+        {% if not propiedad.sold_out %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
                 <img class="card-img-top"
@@ -60,6 +61,7 @@
                 </div>
             </div>
         </div>
+        {% endif %}
         {% endfor %}
     </div>
     <div class="text-center mb-3">

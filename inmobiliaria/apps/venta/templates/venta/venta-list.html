@@ -1,0 +1,41 @@
+{% extends 'core/base/base.html' %}
+
+{% block title %}Mis Compras{% endblock %}
+
+{% block content %}
+
+<div class="container" style="min-height: 627px">
+    <h2 class="text-center">Mis compras</h2>
+    <hr class="col-7">
+    <div class="container-fluid">
+        {% if ventas %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID Venta</th>
+                    <th scope="col">ID Propiedad</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venta in ventas %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td>{{ venta.id }}</td>
+                    <td><a href="{{ venta.propiedad.get_absolute_url }}">{{ venta.propiedad.id }}</a></td>
+                    <td>{{ venta.created }}</td>
+                    <td><a href="{% url 'venta:cancel' venta.id %}"><button class="btn btn-danger">Cancelar</button></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <strong>No registras ninguna operación.</strong>
+        </div> 
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

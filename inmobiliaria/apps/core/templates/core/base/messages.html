@@ -1,7 +1,7 @@
 <div class="container text-center">
     {% if messages %}
         {% for message in messages %}
-            <div class="alert alert-success">
+            <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %}">
                 <strong>{{ message }}</strong>
             </div>  
         {% endfor %}
