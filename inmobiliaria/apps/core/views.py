@@ -5,6 +5,7 @@ from apps.propiedad.models import Propiedad
 def HomePage(request):
 
     propiedades = Propiedad.objects.all()
+    
     context = {
         'propiedades': propiedades
     }

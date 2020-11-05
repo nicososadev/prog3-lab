@@ -28,6 +28,7 @@ def propiedadDetail(request, propiedad_id):
 def propiedadList(request):
 
     propiedades = Propiedad.objects.all()
+
     context = {
         'propiedades': propiedades
     }
@@ -42,27 +43,36 @@ def propiedadListFilter(request):
     operation = request.GET.get('operacion')
     rooms = request.GET.get('rooms')
     bathrooms = request.GET.get('bathrooms')
+    precio_min = request.GET.get('precio-min')
+    precio_max = request.GET.get('precio-max')
 
     if propType != '' and propType is not None:
-        porpiedades = propiedades.filter(propType=propType)
+        propiedades = propiedades.filter(propType=propType)
 
     if operation != '' and operation is not None:
-        porpiedades = propiedades.filter(operation=operation)
+        propiedades = propiedades.filter(operation=operation)
 
     if rooms != '' and rooms is not None:
-        porpiedades = propiedades.filter(rooms=rooms)
+        propiedades = propiedades.filter(rooms=rooms)
 
     if bathrooms != '' and bathrooms is not None:
-        porpiedades = propiedades.filter(bathrooms=bathrooms)   
+        propiedades = propiedades.filter(bathrooms=bathrooms)
+
+    if precio_min != '' and precio_min is not None:
+        propiedades = propiedades.filter(price__gte=precio_min)
+
+    if precio_max != '' and precio_max is not None:
+        propiedades = propiedades.filter(price__lte=precio_max)
         
     context = {
-        'propiedades': porpiedades
+        'propiedades': propiedades
     }
 
     return render(request, 'propiedad/propiedad-list.html', context)
 
 @login_required
 def propiedadCreate(request):
+    
     form = PropiedadForm(request.POST or None, request.FILES or None)
 
     context = {
