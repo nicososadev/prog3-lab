@@ -3,6 +3,32 @@
 
 {% block title %}Propiedades{% endblock %}
 
+{% block script %}
+<script>
+    function comprobarMinMax() {
+        let min = document.getElementById("precio-min").value;
+        let max = document.getElementById("precio-max").value;
+
+        precio_min = parseInt(min)
+        precio_max = parseInt(max)
+
+        if ( !isNaN(precio_min) && !isNaN(precio_max) ){
+            if ( precio_min < precio_max ) {
+                return true
+            }
+            else {
+                document.getElementById("validation").innerHTML = 'Precio minimo debe ser menor al precio maximo'
+                return false
+            }
+        }
+
+        if ( isNaN(precio_min) || isNaN(precio_max) ){
+            return true
+        }
+    }
+</script>
+{% endblock %}
+
 {% block content %}
 <div class="container-fluid" style="min-height: 627px">
     <h2 class="text-center">Listado de propiedads</h2>
@@ -14,7 +40,7 @@
             <div class="col-2 ml-4 mr-4">
                 <h5 class="text-center">Filtrar Propiedades</h5>
                 <hr>
-                <form method="GET" action="{% url 'propiedad:filter' %}">
+                <form method="GET" onsubmit="return comprobarMinMax()" action="{% url 'propiedad:filter' %}">
                     <label class="mt-3" for="habitaciones">Tipo de Propiedad</label>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="tipo" id="casa" value="CA">
@@ -107,6 +133,9 @@
                             <div class="col-sm-10">
                                 <input type="number" class="form-control" name="precio-max" id="precio-max">
                             </div>
+                        </div>
+                        <div class="text-center">
+                            <strong id="validation"></strong>
                         </div>
                     <button type="submit" class="btn btn-primary mt-3 mb-3">Filtrar</button>
                 </form>
