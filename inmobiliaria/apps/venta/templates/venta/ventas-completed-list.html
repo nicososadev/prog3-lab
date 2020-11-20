@@ -1,11 +1,11 @@
 {% extends 'core/base/base.html' %}
 
-{% block title %}Solicitudes{% endblock %}
+{% block title %}Mis Ventas Completadas{% endblock %}
 
 {% block content %}
 
 <div class="container" style="min-height: 627px">
-    <h2 class="text-center">Solicitudes</h2>
+    <h2 class="text-center">Listado de ventas Completadas</h2>
     <hr class="col-7">
     <div class="container-fluid">
         {% if ventas %}
@@ -13,12 +13,12 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">ID Solicitud</th>
+                    <th scope="col">ID Venta</th>
                     <th scope="col">ID Propiedad</th>
                     <th scope="col">Usuario</th>
                     <th scope="col">Email</th>
-                    <th scope="col">Fecha</th>
-                    <th scope="col" colspan="2">Acciones</th>
+                    <th scope="col">Fecha Reservada</th>
+                    <th scope="col">Fecha venta Completada</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,15 +30,14 @@
                     <td>{{ venta.usuario }}</td>
                     <td>{{ venta.usuario.email }}</td>
                     <td>{{ venta.reserved }}</td>
-                    <td><a href="{% url 'venta:cancel' venta.id %}"><button class="btn btn-danger">Cancelar</button></a></td>
-                    <td><a href="{% url 'venta:completar-venta' venta.id %}"><button class="btn btn-success">Vendida</button></a></td>
+                    <td>{{ venta.completed_date }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         {% else %}
         <div class="alert alert-info text-center">
-            <strong>No registras ninguna solicitud.</strong>
+            <strong>No registras ninguna venta completada.</strong>
         </div> 
         {% endif %}
     </div>

@@ -8,6 +8,7 @@ from apps.propiedad.models import Propiedad
 from apps.agente.models import Agente
 
 from .forms import PropiedadForm
+from apps.user.decorators import allowed_users
 
 def propiedadDetail(request, propiedad_id):
 
@@ -70,7 +71,8 @@ def propiedadListFilter(request):
 
     return render(request, 'propiedad/propiedad-list.html', context)
 
-@login_required
+@login_required(login_url='/users/login/')
+@allowed_users(allowed_roles=['agente'])
 def propiedadCreate(request):
     
     form = PropiedadForm(request.POST or None, request.FILES or None)
@@ -90,4 +92,108 @@ def propiedadCreate(request):
 
             return HttpResponseRedirect("/")
 
-    return render(request, 'propiedad/propiedad-form.html', context)  
+    return render(request, 'propiedad/propiedad-form.html', context)
+
+@login_required(login_url='/users/login/')
+@allowed_users(allowed_roles=['agente'])
+def propiedadUpdate(request, propiedad_id):
+
+    try:
+        propiedad = Propiedad.objects.get(id=propiedad_id)
+    except ObjectDoesNotExist:
+        messages.error(request, 'Propiedad no encontrada')
+        return redirect('agente:propiedades')
+
+    user = request.user
+
+    if user != propiedad.agente:
+        messages.error(request, 'No tienes permiso para modificar esta propiedad')
+        return redirect('agente:propiedades')
+    
+    if propiedad.reserved:
+        messages.error(request, 'No es posible actualizar una propiedad reservada')
+        return redirect('agente:propiedades')
+
+    if propiedad.sold_out:
+        messages.error(request, 'No es posible actualizar una propiedad vendida')
+        return redirect('agente:propiedades')
+
+    form = PropiedadForm(request.POST or None, request.FILES or None, instance=propiedad)
+
+    context = {
+        'form': form
+    }
+
+    if request.method == 'POST':
+        if form.is_valid():
+            propiedad = form.save(commit=False)
+
+            propiedad.agente = request.user 
+            propiedad.save()
+
+            messages.success(request, 'Propiedad actualizada con exito.')
+
+            return redirect('agente:propiedades')
+
+    return render(request, 'propiedad/propiedad-update-form.html', context)   
+
+
+@login_required(login_url='/users/login/')
+@allowed_users(allowed_roles=['agente'])
+def propiedadDeleteConfirm(request, propiedad_id):
+
+    try:
+        propiedad = Propiedad.objects.get(id=propiedad_id)
+    except ObjectDoesNotExist:
+        messages.error(request, 'Propiedad no encontrada')
+        return redirect('agente:propiedades')
+
+    user = request.user
+
+    if user != propiedad.agente:
+        messages.error(request, 'No tienes permiso para eliminar esta propiedad')
+        return redirect('agente:propiedades')
+
+    if propiedad.reserved:
+        messages.error(request, 'No es posible eliminar una propiedad reservada')
+        return redirect('agente:propiedades')
+
+    if propiedad.sold_out:
+        messages.error(request, 'No es posible eliminar una propiedad vendida')
+        return redirect('agente:propiedades')
+
+    context = {
+        'propiedad': propiedad
+    }
+
+    return render(request, 'propiedad/propiedad-delete.html', context) 
+
+@login_required(login_url='/users/login/')
+@allowed_users(allowed_roles=['agente'])
+def propiedadDelete(request, propiedad_id):
+
+    try:
+        propiedad = Propiedad.objects.get(id=propiedad_id)
+    except ObjectDoesNotExist:
+        messages.error(request, 'Propiedad no encontrada')
+        return redirect('agente:propiedades')
+
+    user = request.user
+
+    if user != propiedad.agente:
+        messages.error(request, 'No tienes permiso para eliminar esta propiedad')
+        return redirect('agente:propiedades')
+
+    if propiedad.reserved:
+        messages.error(request, 'No es posible eliminar una propiedad reservada')
+        return redirect('agente:propiedades')
+
+    if propiedad.sold_out:
+        messages.error(request, 'No es posible eliminar una propiedad vendida')
+        return redirect('agente:propiedades')
+
+    propiedad.delete()
+
+    messages.success(request, 'Propiedad eliminada con éxito')
+
+    return redirect('agente:propiedades')

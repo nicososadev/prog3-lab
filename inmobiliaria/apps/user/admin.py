@@ -17,10 +17,9 @@ class UsuarioAdmin(BaseUserAdmin):
     fieldsets = (
         (None, {'fields': ('email', 'password')}),
         ('Personal info', {'fields': ('name',)}),
-        ('Permissions', {'fields': ('admin', 'staff', 'active')}),
+        ('Permissions', {'fields': ('admin', 'staff', 'active', 'groups', 'user_permissions')}),
     )
-    # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
-    # overrides get_fieldsets to use this attribute when creating a user.
+    
     add_fieldsets = (
         (None, {
             'classes': ('wide',),
@@ -28,7 +27,7 @@ class UsuarioAdmin(BaseUserAdmin):
         ),
     )
     ordering = ('email',)
-    filter_horizontal = ()
+    # filter_horizontal = ()
 
 
 admin.site.register(User, UsuarioAdmin)

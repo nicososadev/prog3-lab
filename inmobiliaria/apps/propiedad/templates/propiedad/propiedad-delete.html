@@ -5,7 +5,7 @@
 {% block content %}
 
 <div class="container" style="min-height: 627px">
-    <h2 class="text-center">Confirmar Reserva</h2>
+    <h2 class="text-center">Confirmar Eliminar Propiedad</h2>
     <hr class="col-7">
     <div class="container-fluid">
         <h3 class="mb-3">Propiedad</h3>
@@ -14,22 +14,15 @@
                 <p>ID Propiedad: {{ propiedad.id }}</p>
                 <p>Tipo de Propiedad: {{ propiedad.get_propType_display }}</p>
                 <p>Tipo de Operacion: {{ propiedad.get_operation_display }}</p>
-                <p>Precio: {{ propiedad.precio }}</p>
             </div>
             <div class="col-2">
                 <img src="{{ propiedad.image.url }}" alt="img-prop" style="max-height: 300px; max-width: 200px;">
             </div>
         </div>
-        <h3 class="mb-3">Agente Responsable</h3>
-        <div class="row">
-            <div class="col-5 ml-3">
-                <p>Nombre: {{ agente.user }}</p>
-                <p>Email: {{ agente.user.email }}</p>
-                <p>Teléfono: {{ agente.telefono }}</p>
-            </div>
-        </div>
+        
         <hr class="col-7">
-        <a href="{% url 'venta:confirmar-venta' propiedad.id %}"><button class="btn btn-success mt-3 ml-3">Reservar</button></a>
+        <a href="{% url 'agente:propiedades' %}"><button class="btn btn-danger mt-3 ml-3">Cancelar</button></a>
+        <a href="{% url 'propiedad:eliminar' propiedad.id %}"><button class="btn btn-success mt-3 ml-3">Si, estoy seguro</button></a>
     </div>
 </div>
 {% endblock %}

@@ -166,25 +166,9 @@ border-top-right-radius: 0;
 }
 
 /* ---------- Sidebar ---------- */
+
 .sidebar {
     padding: 100px;
     margin: auto;
-}
-
-/* ---------- Agentes ---------- */
-
-.marketing .col-lg-4 {
-    margin-top: 2.5rem;
-    margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.marketing h2 {
-    font-weight: 400;
-}
-
-.marketing .col-lg-4 p {
-    margin-right: .75rem;
-    margin-left: .75rem;
 }
   

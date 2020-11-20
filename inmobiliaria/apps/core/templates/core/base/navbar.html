@@ -24,17 +24,28 @@
                 {% if user.is_authenticated %}
                 {% if not user.is_staff %}
                 <li class="nav-item">
-                    <a class="nav-link" href="{% url 'venta:compras' %}">Mis compras</a>
+                    <a class="nav-link" href="{% url 'venta:compras' %}">Mis Solicitudes</a>
                 </li>
                 {% endif %}
                 {% endif %}
                 {% if user.is_staff %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'propiedad:registrar' %}">Registrar Propiedad</a>
+                {% if not user.is_admin %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Menu Agente
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="{% url 'propiedad:registrar' %}">Registrar Propiedad</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'agente:propiedades' %}">Mis Propiedades</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'venta:ventas' %}">Solicitudes</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'venta:ventas-completadas' %}">Ventas completadas</a>
+                    </div>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'venta:ventas' %}">Mis Ventas</a>
-                </li>
+                {% endif %}
                 {% endif %}
                 {% if user.is_admin %}
                 <li class="nav-item">
@@ -46,7 +57,7 @@
             {% if user.is_authenticated %}
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <span class="nav-link mr-auto "><span class="ti-user">  </span>{{ request.user.name }}</span>
+                    <span class="nav-link mr-auto "><span class="ti-user"> </span>{{ request.user.name }}</span>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mr-auto" href="{% url 'user:logout' %}">Salir</a>

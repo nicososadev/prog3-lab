@@ -21,7 +21,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     # Jet
-    path('jet/', include('jet.urls', 'jet')),
+    #path('jet/', include('jet.urls', 'jet')),
 
     # Admin
     path('admin/', admin.site.urls),
@@ -40,6 +40,9 @@ urlpatterns = [
 
     # Venta
     path('venta/', include('apps.venta.urls', namespace='venta')),
+
+    # Agente
+    path('agente/', include('apps.agente.urls', namespace='agente')),
 ]
 
 if settings.DEBUG:

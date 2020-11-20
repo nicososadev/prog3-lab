@@ -1,11 +1,11 @@
 {% extends 'core/base/base.html' %}
 
-{% block title %}Mis Compras{% endblock %}
+{% block title %}Mis Solicitudes{% endblock %}
 
 {% block content %}
 
 <div class="container" style="min-height: 627px">
-    <h2 class="text-center">Mis Compras</h2>
+    <h2 class="text-center">Mis Solicitudes</h2>
     <hr class="col-7">
     <div class="container-fluid">
         {% if compras %}
@@ -13,8 +13,9 @@
             <thead class="thead-light">
                 <tr>
                     <th scope="col">#</th>
-                    <th scope="col">ID Compra</th>
+                    <th scope="col">ID Reserva</th>
                     <th scope="col">ID Propiedad</th>
+                    <th scope="col">Agente</th>
                     <th scope="col">Fecha</th>
                     <th scope="col">Acciones</th>
                 </tr>
@@ -24,9 +25,10 @@
                 <tr>
                     <th scope="row">{{forloop.counter}}</th>
                     <td>{{ compra.id }}</td>
-                    <td><a href="{{ venta.propiedad.get_absolute_url }}">{{ compra.propiedad.id }}</a></td>
-                    <td>{{ compra.created }}</td>
-                    <td><a href="{% url 'venta:cancel' compra.id %}"><button class="btn btn-danger">Cancelar</button></a></td>
+                    <td><a href="{{ compra.propiedad.get_absolute_url }}">{{ compra.propiedad.id }}</a></td>
+                    <td>{{ compra.propiedad.agente }}</td>
+                    <td>{{ compra.reserved }}</td>
+                    <td><a href="{% url 'venta:cancel' compra.id %}"><button class="btn btn-danger">Cancelar Reserva</button></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

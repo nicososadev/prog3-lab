@@ -1,0 +1,59 @@
+{% extends 'core/base/base.html' %}
+
+{% block title %}Propiedades{% endblock %}
+
+{% block content %}
+
+<div class="container" style="min-height: 627px">
+    <h2 class="text-center">Lista de Propiedades Registradas</h2>
+    <hr class="col-7">
+    <div class="container-fluid">
+        {% if propiedades %}
+        <table class="table">
+            <thead class="thead-light">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">ID Propiedad</th>
+                    <th scope="col">Tipo Propiedad</th>
+                    <th scope="col">Tipo Operación</th>
+                    
+                    <th scope="col">Estado</th>
+                    <th scope="col">Fecha Registrada</th>
+                    <th scope="col" colspan="2">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for propiedad in propiedades %}
+                <tr>
+                    <th scope="row">{{forloop.counter}}</th>
+                    <td><a href="{{ propiedad.get_absolute_url }}">{{ propiedad.id }}</a></td>
+                    <td>{{ propiedad.get_propType_display }}</td>
+                    <td>{{ propiedad.get_operation_display }}</td>
+                    
+                    {% if propiedad.sold_out %}
+                    <td><span class="badge badge-danger">Vendida</></span></td>
+                    {% elif propiedad.reserved %}
+                    <td><span class="badge badge-warning">Reservada</></span></td>
+                    {% else %}
+                    <td><span class="badge badge-success">Disponible</></span></td>
+                    {% endif %}
+                    <td>{{ propiedad.created }}</td>
+                    {% if propiedad.reserved or propiedad.sold_out %}
+                    <td><a><button class="btn btn-secondary disabled">Modificar</button></a></td>
+                    <td><a><button class="btn btn-secondary disabled">Eliminar</button></a></td>
+                    {% else %}
+                    <td><a href="{% url 'propiedad:actualizar' propiedad.id %}"><button class="btn btn-info">Modificar</button></a></td>
+                    <td><a href="{% url 'propiedad:confirmar' propiedad.id %}"><button class="btn btn-danger">Eliminar</button></a></td>
+                    {% endif %}
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <div class="alert alert-info text-center">
+            <strong>No registras ninguna operación.</strong>
+        </div> 
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
