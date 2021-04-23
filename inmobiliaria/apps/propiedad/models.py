@@ -30,7 +30,7 @@ class Propiedad(models.Model):
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name = 'Precio')
     created = models.DateTimeField(auto_now_add=True, verbose_name = 'Creado')
     updated = models.DateTimeField(auto_now=True, verbose_name = 'Actualizado')
-
+    #comentario
     class Meta:
         verbose_name = 'propiedad'
         verbose_name_plural = 'propiedades'
